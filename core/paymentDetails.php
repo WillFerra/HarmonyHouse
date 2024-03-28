@@ -9,7 +9,7 @@ class PaymentDetails{
     public $bankId;
     public $expDate;
     public $CVV;
-    public $holderName
+    public $holderName;
 
     public function __construct($db){
         $this->conn = $db;

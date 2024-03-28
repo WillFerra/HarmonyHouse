@@ -15,4 +15,19 @@ class Users{
     public function __construct($db){
         $this->conn = $db;
     }
+
+    // Getting Users from database
+    public function readUsers(){
+
+        // Read Query
+        $query = 'SELECT * FROM '.$this->table.' u ORDER BY u.name ASC;';
+
+        // prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
