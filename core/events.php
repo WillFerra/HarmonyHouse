@@ -70,12 +70,13 @@ class Events{
                 JOIN status s ON s.id = e.eventStatus 
                 JOIN users u ON u.id = e.user 
                 JOIN paymentTerms p ON p.id = e.paymentTerms 
-                WHERE e.eventName like '%?%';";
+                WHERE e.eventName like ?;";
 
         // prepare Statement
         $stmt = $this->conn->prepare($query);
 
         // Bind the parameter
+        $eventName = '%' . $this->eventName . '%';
         $stmt->bindParam(1,$this->eventName);
 
         // execute query
@@ -88,6 +89,7 @@ class Events{
                 printf('No record found');
                 return false;
             }
+            $this->id = $row['id'];
             $this->eventName = $row['eventName'];
             $this->eventDate = $row['eventDate'];
             $this->eventTime = $row['eventTime'];
