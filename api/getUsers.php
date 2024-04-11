@@ -27,9 +27,8 @@ if($num > 0){
             'name'              => $name,
             'surname'           => $surname,
             'address'           => $address,
-            'streetId'          => $streetId,
-            'paymentDetailsId'  => $paymentDetailsId,
-            'roleId'            => $roleId,
+            'street'            => $streetName,
+            'role'              => $role,
         );
         // add current user into list
         array_push($user_list['data'], $user_item);

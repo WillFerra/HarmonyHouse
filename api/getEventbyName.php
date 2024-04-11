@@ -10,8 +10,8 @@ include_once('../core/initialize.php');
 // Create an instance of Event
 $event = new events($db);
 
-$event->id = isset($_GET['id']) ? $_GET['id'] : die();
-$result = $event-> getEventById();
+$event->eventName = isset($_GET['eventName']) ? $_GET['eventName'] : die();
+$result = $event-> getEventByName();
 
 if($result!==false){
     $event_info = array(
