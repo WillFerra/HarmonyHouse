@@ -13,19 +13,32 @@ $event = new events($db);
 $event->eventName = isset($_GET['eventName']) ? $_GET['eventName'] : die();
 $result = $event-> getEventByName();
 
-if($result!==false){
-    $event_info = array(
-        'id'                => $event->id,
-        'eventName'         => $event->eventName,
-        'eventDate'         => $event->eventDate,
-        'eventTime'         => $event->eventTime,
-        'organiserPrice'    => $event->organiserPrice,
-        'eventStatus'       => $event->eventStatus,
-        'name'              => $event->name,
-        'paymentTerms'      => $event->paymentTerms
-    );
+$num = $result->rowCount();
 
-    print_r(json_encode($event_info));
+if($num > 0){
+    $event_list = array();
+    $event_list['data'] = array();
+
+    // while more rows exist, get next row
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+        $event_item = array(
+            'id'                => $id,
+            'eventName'         => $eventName,
+            'eventDate'         => $eventDate,
+            'eventTime'         => $eventTime,
+            'organiserPrice'    => $organiserPrice,
+            'eventStatus'       => $status,
+            'name'              => $userName,
+            'paymentTerms'      => $payment
+        );
+        // add current user into list
+        array_push($event_list['data'], $event_item);
+    }
+    echo json_encode($event_list);
+}
+else{
+    echo json_encode(array('message'=>'No Events found.'));
 }
 
 

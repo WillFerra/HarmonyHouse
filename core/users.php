@@ -39,7 +39,6 @@ class Users{
     public function getUserById(){
 
         // Read Query
-        // Read Query
         $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role
                 FROM ' .$this->table. ' u
                 JOIN street s ON s.id = u.streetId 
@@ -66,8 +65,8 @@ class Users{
             $this->name = $row['name'];
             $this->surname = $row['surname'];
             $this->address = $row['address'];
-            $this->name = $row['name'];
-            $this->name = $row['name'];
+            $this->streetName = $row['streetName'];
+            $this->role = $row['role'];
             return $stmt;
         }
 

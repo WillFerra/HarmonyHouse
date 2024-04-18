@@ -15,12 +15,12 @@ $result = $user-> getUserById();
 
 if($result!==false){
     $user_info = array(
-        'id'       => $user->id,
-        'name'     => $user->name,
-        'surname'  => $user->surname,
-        'address'  => $user->address,
-        'name'     => $user->streetName,
-        'name'     => $user->role,
+        'id'            => $user->id,
+        'name'          => $user->name,
+        'surname'       => $user->surname,
+        'address'       => $user->address,
+        'streetName'    => $user->streetName,
+        'role'          => $user->role,
     );
 
     print_r(json_encode($user_info));

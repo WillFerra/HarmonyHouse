@@ -77,34 +77,15 @@ class Events{
 
         // Bind the parameter
         $eventName = '%' . $this->eventName . '%';
-        $stmt->bindParam(1,$this->eventName);
+        $stmt->bindParam(1,$eventName);
 
         // execute query
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if($stmt->execute()){
-            if($row==null){
-                printf('No record found');
-                return false;
-            }
-            $this->id = $row['id'];
-            $this->eventName = $row['eventName'];
-            $this->eventDate = $row['eventDate'];
-            $this->eventTime = $row['eventTime'];
-            $this->organiserPrice = $row['organiserPrice'];
-            $this->eventStatus = $row['status'];
-            $this->name = $row['userName'];
-            $this->paymentTerms = $row['payment'];
-            return $stmt;
-        }
-
-        printf('Error: %s. \n', $stmt->error);
-        return false;
+        return $stmt;
     }
 
-    // Getting Events from database
+    // Getting All Events from database
     public function readEvents(){
 
         $query = 'SELECT e.id, e.eventName, e.eventDate, e.eventTime, e.organiserPrice, 
@@ -121,5 +102,105 @@ class Events{
         $stmt->execute();
 
         return $stmt;
+    }
+
+    // Updating Single Event by the ID
+    public function updateEvent(){
+        $query = 'UPDATE '.$this->table.'
+                    SET eventName = :eventName,
+                        eventDate = :eventDate,
+                        eventTime = :eventTime,
+                        organiserPrice = :organiserPrice,
+                        eventStatus = :eventStatus,
+                        user = :user,
+                        paymentTerms = :paymentTerms
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->eventName = htmlspecialchars(strip_tags($this->eventName));
+        $this->eventDate = htmlspecialchars(strip_tags($this->eventDate));
+        $this->eventTime = htmlspecialchars(strip_tags($this->eventTime));
+        $this->organiserPrice = htmlspecialchars(strip_tags($this->organiserPrice));
+        $this->eventStatus = htmlspecialchars(strip_tags($this->eventStatus));
+        $this->user = htmlspecialchars(strip_tags($this->user));
+        $this->paymentTerms = htmlspecialchars(strip_tags($this->paymentTerms));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':eventName', $this->eventName);
+        $stmt->bindParam(':eventDate', $this->eventDate);
+        $stmt->bindParam(':eventTime', $this->eventTime);
+        $stmt->bindParam(':organiserPrice', $this->organiserPrice);
+        $stmt->bindParam(':eventStatus', $this->eventStatus);
+        $stmt->bindParam(':user', $this->user);
+        $stmt->bindParam(':paymentTerms', $this->paymentTerms);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+    
+    // Updating Event Name by the ID
+    public function updateEventName(){
+        $query = 'UPDATE '.$this->table.'
+                    SET eventName = :eventName
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->eventName = htmlspecialchars(strip_tags($this->eventName));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':eventName', $this->eventName);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Creating New Event
+    public function createEvent(){
+        $query = 'INSERT INTO '.$this->table.'
+            (eventName, eventDate, eventTime, organiserPrice, eventStatus, user, paymentTerms)
+            VALUES(:eventName, :eventDate, :eventTime, :organiserPrice, :eventStatus, :user, :paymentTerms);';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->eventName = htmlspecialchars(strip_tags($this->eventName));
+        $this->eventDate = htmlspecialchars(strip_tags($this->eventDate));
+        $this->eventTime = htmlspecialchars(strip_tags($this->eventTime));
+        $this->organiserPrice = htmlspecialchars(strip_tags($this->organiserPrice));
+        $this->eventStatus = htmlspecialchars(strip_tags($this->eventStatus));
+        $this->user = htmlspecialchars(strip_tags($this->user));
+        $this->paymentTerms = htmlspecialchars(strip_tags($this->paymentTerms));
+
+        // bind parameters to request
+        $stmt->bindParam(':eventName', $this->eventName);
+        $stmt->bindParam(':eventDate', $this->eventDate);
+        $stmt->bindParam(':eventTime', $this->eventTime);
+        $stmt->bindParam(':organiserPrice', $this->organiserPrice);
+        $stmt->bindParam(':eventStatus', $this->eventStatus);
+        $stmt->bindParam(':user', $this->user);
+        $stmt->bindParam(':paymentTerms', $this->paymentTerms);
+
+        if ($stmt->execute()){
+            return true;
+        }
+
+        printf('Error $s. \n', $stmt->error);
+        return false;
     }
 }
