@@ -85,6 +85,56 @@ class Events{
         return $stmt;
     }
 
+    // Getting Single Event from database by Date
+    public function getEventByDate(){
+
+        // Read Query
+        $query = "SELECT e.id, e.eventName, e.eventDate, e.eventTime, e.organiserPrice, 
+        s.name AS status, u.name AS userName, p.name AS payment
+                FROM " .$this->table. " e
+                JOIN status s ON s.id = e.eventStatus 
+                JOIN users u ON u.id = e.user 
+                JOIN paymentTerms p ON p.id = e.paymentTerms 
+                WHERE e.eventDate like ?;";
+
+        // prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind the parameter
+        $eventDate = '%' . $this->eventDate . '%';
+        $stmt->bindParam(1,$eventDate);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    // Getting Single Event from database by User
+    public function getEventByUser(){
+
+        // Read Query
+        $query = "SELECT e.id, e.eventName, e.eventDate, e.eventTime, e.organiserPrice, 
+        s.name AS status, u.name AS userName, p.name AS payment
+                FROM " .$this->table. " e
+                JOIN status s ON s.id = e.eventStatus 
+                JOIN users u ON u.id = e.user 
+                JOIN paymentTerms p ON p.id = e.paymentTerms 
+                WHERE e.user like ?;";
+
+        // prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind the parameter
+        $user = '%' . $this->user . '%';
+        $stmt->bindParam(1,$user);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     // Getting All Events from database
     public function readEvents(){
 
