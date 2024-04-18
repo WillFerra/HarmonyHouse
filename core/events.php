@@ -103,4 +103,23 @@ class Events{
         printf('Error: %s. \n', $stmt->error);
         return false;
     }
+
+    // Getting Events from database
+    public function readEvents(){
+
+        $query = 'SELECT e.id, e.eventName, e.eventDate, e.eventTime, e.organiserPrice, 
+        s.name AS status, u.name AS userName, p.name AS payment
+                FROM ' .$this->table. ' e
+                JOIN status s ON s.id = e.eventStatus 
+                JOIN users u ON u.id = e.user 
+                JOIN paymentTerms p ON p.id = e.paymentTerms;';
+
+        // prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
