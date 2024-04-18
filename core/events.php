@@ -135,6 +135,30 @@ class Events{
         return $stmt;
     }
 
+    // Getting Single Event from database by Statys
+    public function getEventByStatus(){
+
+        // Read Query
+        $query = "SELECT e.id, e.eventName, e.eventDate, e.eventTime, e.organiserPrice, 
+        s.name AS status, u.name AS userName, p.name AS payment
+                FROM " .$this->table. " e
+                JOIN status s ON s.id = e.eventStatus 
+                JOIN users u ON u.id = e.user 
+                JOIN paymentTerms p ON p.id = e.paymentTerms 
+                WHERE e.eventStatus = ?;";
+
+        // prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind the parameter
+        $stmt->bindParam(1,$this->eventStatus);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     // Getting All Events from database
     public function readEvents(){
 
@@ -196,7 +220,7 @@ class Events{
         return false;
     }
     
-    // Updating Event Name by the ID
+    // Updating Event Name
     public function updateEventName(){
         $query = 'UPDATE '.$this->table.'
                     SET eventName = :eventName
@@ -211,6 +235,102 @@ class Events{
         // bind parameters to request
         $stmt->bindParam(':id', $this->id);
         $stmt->bindParam(':eventName', $this->eventName);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Event Date
+    public function updateEventDate(){
+        $query = 'UPDATE '.$this->table.'
+                    SET eventDate = :eventDate
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->eventDate = htmlspecialchars(strip_tags($this->eventDate));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':eventDate', $this->eventDate);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Event Time
+    public function updateEventTime(){
+        $query = 'UPDATE '.$this->table.'
+                    SET eventTime = :eventTime
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->eventTime = htmlspecialchars(strip_tags($this->eventTime));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':eventTime', $this->eventTime);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Event Organiser Price
+    public function updateEventOrganiserPrice(){
+        $query = 'UPDATE '.$this->table.'
+                    SET organiserPrice = :organiserPrice
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->organiserPrice = htmlspecialchars(strip_tags($this->organiserPrice));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':organiserPrice', $this->organiserPrice);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Event Status
+    public function updateEventStatus(){
+        $query = 'UPDATE '.$this->table.'
+                    SET eventStatus = :eventStatus
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->eventStatus = htmlspecialchars(strip_tags($this->eventStatus));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':eventStatus', $this->eventStatus);
 
         if($stmt->execute()){
             return true;
