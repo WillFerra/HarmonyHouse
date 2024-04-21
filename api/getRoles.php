@@ -7,30 +7,30 @@ header('Content-Type: application/json');
 // initialize API
 include_once('../core/initialize.php');
 
-// Create an instance of User
-$status = new Status($db);
+// Create an instance of role
+$role = new Role($db);
 
-// Call a function from Status instance
-$result = $status->readStatuses();
+// Call a function from Role instance
+$result = $role->readRoles();
 
 $num = $result->rowCount();
 
 if($num > 0){
-    $status_list = array();
-    $status_list['data'] = array();
+    $role_list = array();
+    $role_list['data'] = array();
 
     // while more rows exist, get next row
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        $status_item = array(
+        $role_item = array(
             'id'    => $id,
             'name'  => $name
         );
         // add current user into list
-        array_push($status_list['data'], $status_item);
+        array_push($role_list['data'], $role_item);
     }
-    echo json_encode($status_list);
+    echo json_encode($role_list);
 }
 else{
-    echo json_encode(array('message'=>'No Statuses found.'));
+    echo json_encode(array('message'=>'No Roles found.'));
 }

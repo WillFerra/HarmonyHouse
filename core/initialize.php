@@ -23,6 +23,3 @@ require_once(CORE_PATH.DS.'street.php');
 require_once(CORE_PATH.DS.'town.php');
 require_once(CORE_PATH.DS.'country.php');
 require_once(CORE_PATH.DS.'role.php');
-
-// Add for each class
-// require_once(CORE_PATH.DS.'name.php');
