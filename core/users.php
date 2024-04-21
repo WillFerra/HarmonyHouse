@@ -213,4 +213,167 @@ class Users{
         printf('Error: %s. \n', $stmt->error);
         return false;
     }
+
+    // Updating User Name
+    public function updateUserName(){
+        $query = 'UPDATE '.$this->table.'
+                    SET name = :name
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->name = htmlspecialchars(strip_tags($this->name));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':name', $this->name);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User Surname
+    public function updateUserSurname(){
+        $query = 'UPDATE '.$this->table.'
+                    SET surname = :surname
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->surname = htmlspecialchars(strip_tags($this->surname));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':surname', $this->surname);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User Address
+    public function updateUserAddress(){
+        $query = 'UPDATE '.$this->table.'
+                    SET address = :address
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->address = htmlspecialchars(strip_tags($this->address));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':address', $this->address);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User StreetId
+    public function updateUserStreetId(){
+        $query = 'UPDATE '.$this->table.'
+                    SET streetId = :streetId
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->streetId = htmlspecialchars(strip_tags($this->streetId));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':streetId', $this->streetId);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User PaymentDetailsID
+    public function updateUserPaymentDetailsId(){
+        $query = 'UPDATE '.$this->table.'
+                    SET paymentDetailsId = :paymentDetailsId
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->paymentDetailsId = htmlspecialchars(strip_tags($this->paymentDetailsId));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':paymentDetailsId', $this->paymentDetailsId);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User PaymentDetailsID
+    public function updateUserRole(){
+        $query = 'UPDATE '.$this->table.'
+                    SET roleId = :roleId
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->roleId = htmlspecialchars(strip_tags($this->roleId));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':roleId', $this->roleId);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    public function delete(){
+        $query = 'DELETE FROM '.$this->table.' WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
 }
