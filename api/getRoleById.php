@@ -21,6 +21,3 @@ if($result!==false){
 
     print_r(json_encode($role_info));
 }
-
-
-
