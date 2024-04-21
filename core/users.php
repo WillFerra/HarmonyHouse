@@ -334,7 +334,7 @@ class Users{
         return false;
     }
 
-    // Updating User PaymentDetailsID
+    // Updating User Role
     public function updateUserRole(){
         $query = 'UPDATE '.$this->table.'
                     SET roleId = :roleId
