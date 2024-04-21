@@ -358,7 +358,7 @@ class Users{
         return false;
     }
 
-    public function delete(){
+    public function deleteUser(){
         $query = 'DELETE FROM '.$this->table.' WHERE id = :id;';
         
         $stmt = $this->conn->prepare($query);

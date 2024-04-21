@@ -11,14 +11,14 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 // initialize API
 include_once('../core/initialize.php');
 
-// Create an instance of User
-$user = new Users($db);
+// Create an instance of status
+$status = new Status($db);
 
-$user->id = isset($_GET['id']) ? $_GET['id'] : die();
+$status->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-if($user->deleteUser()){
-    echo json_encode(array('message' => 'User deleted.'));
+if($status->deleteStatus()){
+    echo json_encode(array('message' => 'Status deleted.'));
 }
 else{
-    echo json_encode(array('message' => 'User not deleted.'));
+    echo json_encode(array('message' => 'Status not deleted.'));
 }
