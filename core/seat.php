@@ -159,4 +159,152 @@ class Seat{
         printf('Error $s. \n', $stmt->error);
         return false;
     }
+
+    // Updating Single Seat by the ID
+    public function updateSeat(){
+        $query = 'UPDATE '.$this->table.'
+                    SET seatNo = :seatNo,
+                        seatRow = :seatRow,
+                        seatSection = :seatSection,
+                        venuePrice = :venuePrice
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->seatNo = htmlspecialchars(strip_tags($this->seatNo));
+        $this->seatRow = htmlspecialchars(strip_tags($this->seatRow));
+        $this->seatSection = htmlspecialchars(strip_tags($this->seatSection));
+        $this->venuePrice = htmlspecialchars(strip_tags($this->venuePrice));
+        
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':seatNo', $this->seatNo);
+        $stmt->bindParam(':seatRow', $this->seatRow);
+        $stmt->bindParam(':seatSection', $this->seatSection);
+        $stmt->bindParam(':venuePrice', $this->venuePrice);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Seat No
+    public function updateSeatNo(){
+        $query = 'UPDATE '.$this->table.'
+                    SET seatNo = :seatNo
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->seatNo = htmlspecialchars(strip_tags($this->seatNo));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':seatNo', $this->seatNo);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Seat Row
+    public function updateSeatRow(){
+        $query = 'UPDATE '.$this->table.'
+                    SET seatRow = :seatRow
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->seatRow = htmlspecialchars(strip_tags($this->seatRow));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':seatRow', $this->seatRow);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Seat Section
+    public function updateSeatSection(){
+        $query = 'UPDATE '.$this->table.'
+                    SET seatSection = :seatSection
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->seatSection = htmlspecialchars(strip_tags($this->seatSection));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':seatSection', $this->seatSection);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating Seat Venue PRice
+    public function updateSeatVenuePrice(){
+        $query = 'UPDATE '.$this->table.'
+                    SET venuePrice = :venuePrice
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->venuePrice = htmlspecialchars(strip_tags($this->venuePrice));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':venuePrice', $this->venuePrice);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    public function deleteSeat(){
+        $query = 'DELETE FROM '.$this->table.' WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
 }
