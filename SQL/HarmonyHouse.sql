@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 18, 2024 at 06:10 AM
+-- Generation Time: Apr 26, 2024 at 07:42 PM
 -- Server version: 5.7.39
 -- PHP Version: 8.2.0
 
@@ -37,9 +37,10 @@ CREATE TABLE `Bank` (
 --
 
 INSERT INTO `Bank` (`id`, `name`) VALUES
-(1, 'HSBC Malta'),
+(1, 'HSBC'),
 (2, 'Bank of Valletta'),
-(3, 'APS Bank');
+(3, 'APS Bank'),
+(4, 'FCM Bank');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,8 @@ CREATE TABLE `Booking` (
 INSERT INTO `Booking` (`id`, `userId`, `seatId`, `eventId`, `paymentTerms`) VALUES
 (1, 1, 2, 1, 1),
 (2, 1, 1, 1, 1),
-(3, 2, 3, 2, 1);
+(3, 2, 3, 2, 1),
+(4, 3, 4, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,9 @@ INSERT INTO `Country` (`id`, `name`) VALUES
 (2, 'United Kingdom'),
 (3, 'France'),
 (4, 'Belgium'),
-(5, 'Germany');
+(5, 'Germany'),
+(6, 'Netherlands'),
+(7, 'Romania');
 
 -- --------------------------------------------------------
 
@@ -104,8 +108,9 @@ CREATE TABLE `Equipment` (
 --
 
 INSERT INTO `Equipment` (`id`, `name`, `price`, `serialNo`) VALUES
-(1, 'F2 Mic Lapelle', 12, '123DW340'),
-(2, 'Blue Light D30', 5, 'BLGHT2900');
+(1, 'Zoom F2 Lapel Mic', 10, '123DW330'),
+(2, 'Blue Light D30', 5, 'BLGHT2900'),
+(3, 'Saramonic Blink Mic', 20, 'SR2305108');
 
 -- --------------------------------------------------------
 
@@ -127,7 +132,8 @@ CREATE TABLE `EquipmentBooking` (
 
 INSERT INTO `EquipmentBooking` (`id`, `eventId`, `equipmentId`, `bookingId`, `paymentTerms`) VALUES
 (1, 1, 2, 2, 4),
-(2, 2, 1, 3, 4);
+(2, 2, 1, 3, 4),
+(3, 1, 1, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -151,9 +157,10 @@ CREATE TABLE `Events` (
 --
 
 INSERT INTO `Events` (`id`, `eventName`, `eventDate`, `eventTime`, `organiserPrice`, `eventStatus`, `user`, `paymentTerms`) VALUES
-(1, 'St. Joseph Concert', '2024-03-19', '19:30:00', 10, 1, 2, 4),
+(1, 'St. Joseph Band', '2024-03-19', '19:00:00', 10, 1, 2, 4),
 (2, 'Back to the 80s Concert', '2024-04-10', '18:00:00', 5, 3, 2, 3),
-(3, 'ChristmasFest', '2024-12-23', '19:30:00', 5, 1, 1, 3);
+(3, 'ChristmasFest', '2024-12-23', '19:30:00', 5, 1, 1, 3),
+(4, 'Festa24', '2024-08-18', '19:30:00', 11.5, 1, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -175,8 +182,9 @@ CREATE TABLE `PaymentDetails` (
 --
 
 INSERT INTO `PaymentDetails` (`id`, `cardNo`, `bankId`, `expDate`, `CVV`, `holderName`) VALUES
-(1, '1234 1234 5678 5678', 1, '02/26', 345, 'Thomas Bajada'),
-(2, '8367 9274 9478 8463', 3, '11/24', 457, 'Britney Portelli');
+(1, '5678 5678 1234 1234', 2, '03/27', 678, 'Thomas Bajada'),
+(2, '8367 9274 9478 8463', 3, '11/24', 457, 'Britney Portelli'),
+(4, '9876 5432 1987 6543', 1, '02/25', 628, 'Logan Borg');
 
 -- --------------------------------------------------------
 
@@ -197,7 +205,8 @@ INSERT INTO `PaymentTerms` (`id`, `name`) VALUES
 (1, 'Paid upon Booking'),
 (2, 'Pay at the Premises'),
 (3, '50% Advanced - 50% After'),
-(4, 'To pay after Event');
+(4, 'To pay after Event'),
+(5, 'Paid Deposit');
 
 -- --------------------------------------------------------
 
@@ -242,7 +251,8 @@ INSERT INTO `Seat` (`id`, `seatNo`, `seatRow`, `seatSection`, `venuePrice`) VALU
 (1, 1, 1, 1, 25),
 (2, 2, 1, 1, 25),
 (3, 18, 23, 2, 20),
-(4, 15, 43, 3, 15);
+(4, 16, 44, 3, 15),
+(6, 3, 1, 1, 25);
 
 -- --------------------------------------------------------
 
@@ -282,7 +292,8 @@ CREATE TABLE `Status` (
 INSERT INTO `Status` (`id`, `name`) VALUES
 (1, 'Confirmed'),
 (2, 'Cancelled'),
-(3, 'Pending');
+(3, 'Pending'),
+(4, 'Re-scheduled');
 
 -- --------------------------------------------------------
 
@@ -306,7 +317,8 @@ INSERT INTO `Street` (`id`, `name`, `townId`) VALUES
 (3, 'L-Imnarja', 3),
 (4, 'San Gorg', 4),
 (5, 'Oxford', 5),
-(6, 'Bart', 6);
+(6, 'Bart', 6),
+(7, 'San Gejtanu', 1);
 
 -- --------------------------------------------------------
 
@@ -347,16 +359,20 @@ CREATE TABLE `Users` (
   `address` varchar(100) NOT NULL,
   `streetId` int(11) NOT NULL,
   `paymentDetailsId` int(11) NOT NULL,
-  `roleId` int(11) NOT NULL
+  `roleId` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `notifications` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`id`, `name`, `surname`, `address`, `streetId`, `paymentDetailsId`, `roleId`) VALUES
-(1, 'Britney', 'Portelli', '23', 3, 2, 1),
-(2, 'Thomas', 'Bajada', '123', 1, 1, 2);
+INSERT INTO `Users` (`id`, `name`, `surname`, `address`, `streetId`, `paymentDetailsId`, `roleId`, `email`, `password`, `notifications`) VALUES
+(1, 'Britney', 'Portelli', '23', 4, 2, 2, 'britneypisa@gmail.com', '2349dk', 1),
+(2, 'Thomas', 'Bajada', '123', 1, 1, 2, 'thomasbajada@hotmail.com', 'dfeo02', 1),
+(3, 'Will', 'Ferrante', '15', 1, 2, 1, 'willferr@gmail.com', '23kdofe', 0);
 
 --
 -- Indexes for dumped tables
@@ -405,9 +421,9 @@ ALTER TABLE `EquipmentBooking`
 --
 ALTER TABLE `Events`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `eventStatus` (`eventStatus`),
   ADD KEY `user` (`user`),
-  ADD KEY `paymentTerms` (`paymentTerms`);
+  ADD KEY `events_ibfk_3` (`paymentTerms`),
+  ADD KEY `eventStatus` (`eventStatus`);
 
 --
 -- Indexes for table `PaymentDetails`
@@ -478,49 +494,49 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Bank`
 --
 ALTER TABLE `Bank`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Booking`
 --
 ALTER TABLE `Booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Country`
 --
 ALTER TABLE `Country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `Equipment`
 --
 ALTER TABLE `Equipment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `EquipmentBooking`
 --
 ALTER TABLE `EquipmentBooking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `Events`
 --
 ALTER TABLE `Events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `PaymentDetails`
 --
 ALTER TABLE `PaymentDetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `PaymentTerms`
 --
 ALTER TABLE `PaymentTerms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Role`
@@ -532,7 +548,7 @@ ALTER TABLE `Role`
 -- AUTO_INCREMENT for table `Seat`
 --
 ALTER TABLE `Seat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `Section`
@@ -544,13 +560,13 @@ ALTER TABLE `Section`
 -- AUTO_INCREMENT for table `Status`
 --
 ALTER TABLE `Status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Street`
 --
 ALTER TABLE `Street`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `Town`
@@ -562,7 +578,7 @@ ALTER TABLE `Town`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -590,9 +606,9 @@ ALTER TABLE `EquipmentBooking`
 -- Constraints for table `Events`
 --
 ALTER TABLE `Events`
-  ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`eventStatus`) REFERENCES `Status` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`user`) REFERENCES `Users` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `events_ibfk_3` FOREIGN KEY (`paymentTerms`) REFERENCES `PaymentTerms` (`id`);
+  ADD CONSTRAINT `events_ibfk_3` FOREIGN KEY (`paymentTerms`) REFERENCES `PaymentTerms` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `events_ibfk_4` FOREIGN KEY (`eventStatus`) REFERENCES `Status` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `PaymentDetails`
