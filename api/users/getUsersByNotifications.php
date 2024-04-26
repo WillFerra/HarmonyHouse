@@ -10,8 +10,8 @@ include_once('../../core/initialize.php');
 // Create an instance of User
 $user = new users($db);
 
-$user->roleId = isset($_GET['roleId']) ? $_GET['roleId'] : die();
-$result = $user-> getUserByRole();
+$user->notifications = isset($_GET['notifications']) ? $_GET['notifications'] : die();
+$result = $user-> getUserByNotifications();
 
 $num = $result->rowCount();
 

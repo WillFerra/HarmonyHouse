@@ -21,6 +21,9 @@ if($result!==false){
         'address'       => $user->address,
         'streetName'    => $user->streetName,
         'role'          => $user->role,
+        'email'         => $user->email,
+        'password'      => $user->password,
+        'notifications' => $user->notifications
     );
 
     print_r(json_encode($user_info));

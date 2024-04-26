@@ -13,6 +13,9 @@ class Users{
     public $streetName;
     public $paymentDetailsId;
     public $role;
+    public $email;
+    public $password;
+    public $notifications;
 
     public function __construct($db){
         $this->conn = $db;
@@ -22,7 +25,8 @@ class Users{
     public function readUsers(){
 
         // Read Query
-        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role
+        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role, 
+        u.email, u.password, u.notifications
                 FROM ' .$this->table. ' u
                 JOIN street s ON s.id = u.streetId 
                 JOIN role r ON r.id = u.roleId ;';
@@ -40,7 +44,8 @@ class Users{
     public function getUserById(){
 
         // Read Query
-        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role
+        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role,
+        u.email, u.password, u.notifications
                 FROM ' .$this->table. ' u
                 JOIN street s ON s.id = u.streetId 
                 JOIN role r ON r.id = u.roleId
@@ -68,6 +73,9 @@ class Users{
             $this->address = $row['address'];
             $this->streetName = $row['streetName'];
             $this->role = $row['role'];
+            $this->email = $row['email'];
+            $this->password = $row['password'];
+            $this->notifications = $row['notifications'];
             return $stmt;
         }
 
@@ -79,7 +87,8 @@ class Users{
     public function getUserByName(){
 
         // Read Query
-        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role
+        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role,
+        u.email, u.password, u.notifications
             FROM ' .$this->table. ' u
             JOIN street s ON s.id = u.streetId 
             JOIN role r ON r.id = u.roleId
@@ -102,7 +111,8 @@ class Users{
     public function getUserBySurname(){
 
         // Read Query
-        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role
+        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role,
+        u.email, u.password, u.notifications
             FROM ' .$this->table. ' u
             JOIN street s ON s.id = u.streetId 
             JOIN role r ON r.id = u.roleId
@@ -125,7 +135,8 @@ class Users{
     public function getUserByRole(){
 
         // Read Query
-        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role
+        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role,
+        u.email, u.password, u.notifications
             FROM ' .$this->table. ' u
             JOIN street s ON s.id = u.streetId 
             JOIN role r ON r.id = u.roleId
@@ -143,11 +154,58 @@ class Users{
         return $stmt;
     }
 
+    // Getting Single User from database by Email
+    public function getUsersByEmail(){
+
+        // Read Query
+        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role,
+        u.email, u.password, u.notifications
+            FROM ' .$this->table. ' u
+            JOIN street s ON s.id = u.streetId 
+            JOIN role r ON r.id = u.roleId
+        WHERE u.email like ?;';
+
+        // prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind the parameter
+        $email = '%' . $this->email . '%';
+        $stmt->bindParam(1,$email);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    // Getting Users from database by Notifications
+    public function getUserByNotifications(){
+
+        // Read Query
+        $query = 'SELECT u.id, u.name, u.surname, u.address, s.name AS streetName, r.name AS role,
+        u.email, u.password, u.notifications
+            FROM ' .$this->table. ' u
+            JOIN street s ON s.id = u.streetId 
+            JOIN role r ON r.id = u.roleId
+        WHERE u.notifications = ?;';
+
+        // prepare Statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind the parameter
+        $stmt->bindParam(1,$this->notifications);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     // Creating New User
     public function createUser(){
         $query = 'INSERT INTO '.$this->table.'
-            (name, surname, address, streetId, paymentDetailsId, roleId)
-            VALUES(:name, :surname, :address, :streetId, :paymentDetailsId, :roleId);';
+            (name, surname, address, streetId, paymentDetailsId, roleId, email, password, notifications)
+            VALUES(:name, :surname, :address, :streetId, :paymentDetailsId, :roleId, :email, :password, :notifications);';
         
         $stmt = $this->conn->prepare($query);
 
@@ -158,6 +216,9 @@ class Users{
         $this->streetId = htmlspecialchars(strip_tags($this->streetId));
         $this->paymentDetailsId = htmlspecialchars(strip_tags($this->paymentDetailsId));
         $this->roleId = htmlspecialchars(strip_tags($this->roleId));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+        $this->notifications = htmlspecialchars(strip_tags($this->notifications));
 
         // bind parameters to request
         $stmt->bindParam(':name', $this->name);
@@ -166,6 +227,9 @@ class Users{
         $stmt->bindParam(':streetId', $this->streetId);
         $stmt->bindParam(':paymentDetailsId', $this->paymentDetailsId);
         $stmt->bindParam(':roleId', $this->roleId);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':password', $this->password);
+        $stmt->bindParam(':notifications', $this->notifications);
 
         if ($stmt->execute()){
             return true;
@@ -183,7 +247,10 @@ class Users{
                         address = :address,
                         streetId = :streetId,
                         paymentDetailsId = :paymentDetailsId,
-                        roleId = :roleId
+                        roleId = :roleId,
+                        email = :email,
+                        password = :password,
+                        notifications = :notifications
                     WHERE id = :id;';
         
         $stmt = $this->conn->prepare($query);
@@ -196,6 +263,9 @@ class Users{
         $this->streetId = htmlspecialchars(strip_tags($this->streetId));
         $this->paymentDetailsId = htmlspecialchars(strip_tags($this->paymentDetailsId));
         $this->roleId = htmlspecialchars(strip_tags($this->roleId));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+        $this->notifications = htmlspecialchars(strip_tags($this->notifications));
         
         // bind parameters to request
         $stmt->bindParam(':id', $this->id);
@@ -205,6 +275,9 @@ class Users{
         $stmt->bindParam(':streetId', $this->streetId);
         $stmt->bindParam(':paymentDetailsId', $this->paymentDetailsId);
         $stmt->bindParam(':roleId', $this->roleId);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':password', $this->password);
+        $stmt->bindParam(':notifications', $this->notifications);
 
         if($stmt->execute()){
             return true;
@@ -349,6 +422,78 @@ class Users{
         // bind parameters to request
         $stmt->bindParam(':id', $this->id);
         $stmt->bindParam(':roleId', $this->roleId);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User Email
+    public function updateUserEmail(){
+        $query = 'UPDATE '.$this->table.'
+                    SET email = :email
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':email', $this->email);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User Password
+    public function updateUserPassword(){
+        $query = 'UPDATE '.$this->table.'
+                    SET password = :password
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->password = htmlspecialchars(strip_tags($this->password));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':password', $this->password);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf('Error: %s. \n', $stmt->error);
+        return false;
+    }
+
+    // Updating User Notifications
+    public function updateUserNotifications(){
+        $query = 'UPDATE '.$this->table.'
+                    SET notifications = :notifications
+                    WHERE id = :id;';
+        
+        $stmt = $this->conn->prepare($query);
+
+        // clean data sent by user (for security)
+        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->notifications = htmlspecialchars(strip_tags($this->notifications));
+
+        // bind parameters to request
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':notifications', $this->notifications);
 
         if($stmt->execute()){
             return true;

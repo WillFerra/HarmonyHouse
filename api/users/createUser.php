@@ -20,6 +20,9 @@ $user->address = $data->address;
 $user->streetId = $data->streetId;
 $user->paymentDetailsId = $data->paymentDetailsId;
 $user->roleId = $data->roleId;
+$user->email = $data->email;
+$user->password = $data->password;
+$user->notifications = $data->notifications;
 
 if($user->createUser()){
     echo json_encode(array('message' => 'User created.'));
