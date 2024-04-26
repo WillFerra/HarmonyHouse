@@ -9,7 +9,7 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 
 
 // initialize API
-include_once('../../../core/initialize.php');
+include_once('../../core/initialize.php');
 
 // Create an instance of Role
 $role = new Role($db);
