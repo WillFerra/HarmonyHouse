@@ -1,0 +1,425 @@
+{
+	"info": {
+		"_postman_id": "f9abeb25-31c1-40f5-bbb3-a3161bbc2490",
+		"name": "Events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32851167"
+	},
+	"item": [
+		{
+			"name": "createEvent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventName\":\"Festa24\",\n    \"eventDate\":\"2024-08-11\",\n    \"eventTime\":\"19:00:00\",\n    \"organiserPrice\":\"15.00\",\n    \"eventStatus\":\"1\",\n    \"user\":\"2\",\n    \"paymentTerms\":\"4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/createEvent.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"createEvent.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEvents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/getEvents.php?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"getEvents.php"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEventById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/getEventById.php?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"getEventById.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEventByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/getEventByName.php?eventName=st",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"getEventByName.php"
+					],
+					"query": [
+						{
+							"key": "eventName",
+							"value": "st"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEventByDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/getEventByDate.php?eventDate=-04-",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"getEventByDate.php"
+					],
+					"query": [
+						{
+							"key": "eventDate",
+							"value": "-04-"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEventByUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/getEventByUser.php?user=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"getEventByUser.php"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEventByStatus.php",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/getEventByStatus.php?eventStatus=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"getEventByStatus.php"
+					],
+					"query": [
+						{
+							"key": "eventStatus",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEvent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"1\",\n    \"eventName\":\"St. Joseph\",\n    \"eventDate\":\"2024-03-19\",\n    \"eventTime\":\"19:00:00\",\n    \"organiserPrice\":\"10\",\n    \"eventStatus\":\"1\",\n    \"user\":\"2\",\n    \"paymentTerms\":\"4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/updateEvent.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"updateEvent.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEventName",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventName\":\"St. Joseph Band\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/updateEventName.php?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"updateEventName.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEventDate",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventDate\":\"2024-08-18\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/updateEventDate.php?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"updateEventDate.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEventTime",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventTime\":\"19:30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/updateEventTime.php?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"updateEventTime.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEventStatus",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventStatus\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/updateEventStatus.php?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"updateEventStatus.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEventOrganiserPrice",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"organiserPrice\":\"11.50\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/events/updateEventOrganiserPrice.php?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"events",
+						"updateEventOrganiserPrice.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

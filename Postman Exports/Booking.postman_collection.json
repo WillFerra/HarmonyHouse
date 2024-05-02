@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "ee7f5f35-89ec-4506-88d7-f76cfe0cc07b",
+		"name": "Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32851167"
+	},
+	"item": [
+		{
+			"name": "createBooking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\":\"3\",\n    \"seatId\":\"4\",\n    \"eventId\":\"4\",\n    \"paymentTerms\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/bookings/createBooking.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"bookings",
+						"createBooking.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBookings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/bookings/getBookings.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"bookings",
+						"getBookings.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBookingById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/bookings/getBookingById.php?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"bookings",
+						"getBookingById.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBookingsByEventId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/bookings/getBookingsByEventId.php?eventId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"bookings",
+						"getBookingsByEventId.php"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBookingsByUserId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/bookings/getBookingsByUserId.php?userId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"bookings",
+						"getBookingsByUserId.php"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateBooking",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"1\",\n    \"userId\":\"1\",\n    \"seatId\":\"2\",\n    \"eventId\":\"1\",\n    \"paymentTerms\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/bookings/updateBooking.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"bookings",
+						"updateBooking.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteBooking",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/bookings/deleteBooking.php?id=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"bookings",
+						"deleteBooking.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

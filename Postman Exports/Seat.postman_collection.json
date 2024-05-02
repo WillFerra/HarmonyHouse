@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "77a527e0-511d-4eab-8718-1b022d3c0122",
+		"name": "Seat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32851167"
+	},
+	"item": [
+		{
+			"name": "createSeat",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"seatNo\":\"3\",\n    \"seatRow\":\"1\",\n    \"seatSection\":\"1\",\n    \"venuePrice\":\"25\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/createSeat.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"createSeat.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/getSeats.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"getSeats.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeatById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/getSeatById.php?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"getSeatById.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeatByNo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/getSeatByNo.php?seatNo=18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"getSeatByNo.php"
+					],
+					"query": [
+						{
+							"key": "seatNo",
+							"value": "18"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeatByRow",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/getSeatByRow.php?seatRow=23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"getSeatByRow.php"
+					],
+					"query": [
+						{
+							"key": "seatRow",
+							"value": "23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSeatBySection",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/getSeatBySection.php?seatSection=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"getSeatBySection.php"
+					],
+					"query": [
+						{
+							"key": "seatSection",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateSeat",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"4\",\n    \"seatNo\":\"16\",\n    \"seatRow\":\"44\",\n    \"seatSection\":\"3\",\n    \"venuePrice\":\"15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/updateSeat.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"updateSeat.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateSeatNo",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"seatNo\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/updateSeatNo.php?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"updateSeatNo.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateSeatRow",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"seatRow\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/updateSeatRow.php?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"updateSeatRow.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateSeatSection",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"seatSection\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/updateSeatSection.php?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"updateSeatSection.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateSeatVenuePrice",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"venuePrice\":\"25\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/updateSeatVenuePrice.php?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"updateSeatVenuePrice.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteSeat",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/seat/deleteSeat.php?id=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"seat",
+						"deleteSeat.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

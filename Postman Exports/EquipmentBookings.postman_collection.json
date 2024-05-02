@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "885c0849-5770-45f4-8683-dfe2a4a60f38",
+		"name": "EquipmentBookings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32851167"
+	},
+	"item": [
+		{
+			"name": "createEquipBooking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"eventId\":\"1\",\n    \"equipmentId\":\"1\",\n    \"bookingId\":\"2\",\n    \"paymentTerms\":\"4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/createEquipBooking.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"createEquipBooking.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipmentBookings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/getEquipmentBookings.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"getEquipmentBookings.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipBookingByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/getEquipBookingByID.php?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"getEquipBookingByID.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipBookingByEventId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/getEquipBookingByEventId.php?eventId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"getEquipBookingByEventId.php"
+					],
+					"query": [
+						{
+							"key": "eventId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipBookingByEquipId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/getEquipBookingByEquipId.php?equipmentId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"getEquipBookingByEquipId.php"
+					],
+					"query": [
+						{
+							"key": "equipmentId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipBookingByBookingId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/getEquipBookingByBookingId.php?bookingId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"getEquipBookingByBookingId.php"
+					],
+					"query": [
+						{
+							"key": "bookingId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEquipBooking",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"1\",\n    \"eventId\":\"1\",\n    \"equipmentId\":\"2\",\n    \"bookingId\":\"2\",\n    \"paymentTerms\":\"4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/updateEquipBooking.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"updateEquipBooking.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEquipBooking",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipmentBookings/deleteEquipBooking.php?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipmentBookings",
+						"deleteEquipBooking.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

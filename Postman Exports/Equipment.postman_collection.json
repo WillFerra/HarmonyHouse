@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "30b5f2ba-7ff6-483c-bc0c-97e2f0c11962",
+		"name": "Equipment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32851167"
+	},
+	"item": [
+		{
+			"name": "createEquipment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Saramonic Blink Mic\",\n    \"price\":\"20\",\n    \"serialNo\":\"SR2305108\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/createEquipment.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"createEquipment.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/getEquipment.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"getEquipment.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipmentById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/getEquipmentById.php?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"getEquipmentById.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipmentByName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/getEquipmentByName.php?name=f2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"getEquipmentByName.php"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "f2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEquipmentBySerialNo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/getEquipmentBySerialNo.php?serialNo=12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"getEquipmentBySerialNo.php"
+					],
+					"query": [
+						{
+							"key": "serialNo",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEquipment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"1\",\n    \"name\":\"Zoom F2 Lapel Mic\",\n    \"price\":\"12\",\n    \"serialNo\":\"123DW360\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/updateEquipment.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"updateEquipment.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEquipmentName",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"1\",\n    \"name\":\"Zoom F2 Lapel Mic\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/updateEquipmentName.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"updateEquipmentName.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEquipmentPrice",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"1\",\n    \"price\":\"10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/updateEquipmentPrice.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"updateEquipmentPrice.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEquipmentSerialNo",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"1\",\n    \"serialNo\":\"123DW330\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/updateEquipmentSerialNo.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"updateEquipmentSerialNo.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEquipment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/HarmonyHouse/api/equipment/deleteEquipment.php?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"HarmonyHouse",
+						"api",
+						"equipment",
+						"deleteEquipment.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
